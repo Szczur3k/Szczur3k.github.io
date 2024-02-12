@@ -4,77 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Developer Skills & Editor Setup</title>
-    <style>
-        * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        align-items: baseline;
-        justify-content: center;
-        background: linear-gradient(to top left, #9add42, #ff5c5c);
-        overflow: hidden;
-        font-weight: bold;
-        text-align: center;
-        color: #fff;
-      }
-      #cat-img {
-        display: inline;
-        margin-top: 10px;
-        height: 80vh;
-        border-radius: 30px;
-        border-color: rgb(255, 255, 255);
-        border-style: solid;
-        border-width: 0.1rem;
-      }
-      #fact {
-        margin-top: 20px;
-        padding: 10px;
-        font-family:  Verdana, Geneva, Tahoma, sans-serif;
-        font-weight: bold;
-        text-align: center;
-        background: #5c42dd;
-        border-radius: 20px 20px 20px 20px;
-        border-color: #fff;
-        border-style: solid;
-        border-width: 3px 3px 3px 3px;
-      }
-      .button-container {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-      }
-      button {
-        padding: 0.5rem 2rem;
-        margin: 0.5rem;
-        border: none;
-        border-radius: 15px;
-        background: #181818;
-        color: #fff;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-      button:hover {
-        filter:brightness(140%);
-        background: rgb(108, 108, 108);
-      }
-    </style>
+    <title>Zostaniesz moja walentynka?</title>
+    <link href="style.css" rel="stylesheet"/>
+    <link href="assets.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-      <img src="" id="cat-img">
-      <div class="button-container">
-        <button id="next-cat">Następny fakt o kotach</button>
-      </div>
-      <div id="fact">
-        <span id="text">text</span>
+    <div>
+      <img id="ridingDudu" src="assets\ridingDudu.png"/>
+      <div id="containerButtons">
+        <div class="centerButton opacity0 delayAsk">
+          <h1 class="ask-container">Zostaniesz moją walentynką?</h1>
+        </div>
+        <div class="centerButton answer-container opacity0 delayAnswer">
+          <a href="loveMe.html">
+            <button type="button" class="valentine-btn yes-btn" id="yesButton">TAK</button>
+          </a>          
+          <button type="button" class="valentine-btn no-btn" onclick="jeszcze()">Nie</button>
+        </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.9.0/dist/gsap.min.js"></script>
     <script src="script.js"></script>
+    <script src="adjustStyle.js"></script>
   </body>
 </html>

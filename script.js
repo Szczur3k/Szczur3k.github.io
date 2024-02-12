@@ -1,94 +1,69 @@
-const loadCatFact = {
-    init: async function() {
-        console.log("start App")
-        
-        const data = await this.getApiData();
-        console.log(data);
-        this.getCatContent(data);
-        this.addKeyListener();
-    },
+const ridingDudu = document.getElementById("ridingDudu");
 
-    getApiData: async function() {
-        const apiUrl = "https://some-random-api.ml/animal/cat";
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        return data;
-    },
+document.addEventListener("DOMContentLoaded", function () {
+  rideDudu();
+});
 
-    preloadCat: function(data) {
-
-    },
-
-    getCatContent: function(data) {
-        const catImage = data.image;
-        const catFact = data.fact;
-        this.updateDOM(catImage, catFact);
-    },
-
-    updateDOM: function(catImage, catFact) {
-        document.getElementById("text").innerHTML = catFact;
-        const image = document.getElementById("cat-img");
-        image.src = catImage;
-    },
-
-    addKeyListener: function() {
-        document.getElementById("next-cat").addEventListener("click", async () => {
-            const data = await this.getApiData();
-            this.getCatContent(data);
-        })
+function rideDudu() {
+  gsap.fromTo(
+    "#ridingDudu",
+    { x: "-100%" },
+    {
+      duration: 6,
+      x: "500%",
+      ease: "power1.inOut",
+      onComplete: function () {
+        changeDuduToWalk();
+      },
     }
+  );
 }
 
-loadCatFact.init();
-
-const clock =  (function() {
-
-    clockInfo = () => {
-        const date = new Date();
-        console.log(date.toLocaleTimeString());
-    };
-
-    startClock = () => {
-        setInterval(() => {
-            clockInfo();
-        }, 1000);
-    };
-
-    return {
-        start: startClock
+function walkDudu() {
+  gsap.fromTo(
+    "#ridingDudu",
+    { x: "530%" },
+    {
+      x: "200%",
+      duration: 6,
+      ease: "power1.inOut",
+      onComplete: function () {
+        askToBeValentine();
+      },
     }
+  );
+}
 
-})();
+function askToBeValentine() {
+  ridingDudu.src = "assets/duduAsk.png";
+  createDelayOpacity(".delayAsk", 1000);
+  createDelayOpacity(".delayAnswer", 3000);
+}
 
-clock.start();
+function changeDuduToWalk() {
+  ridingHeight = ridingDudu.height;
+  ridingDudu.src = "assets/walkingDudu.gif";
+  ridingDudu.style.height = `${ridingHeight} - 100px`;
 
-// function parseData(jsonText, onComplete, onError) {
-//     try{
-//         let result = JSON.parse(jsonText);
-//         onComplete(result);
-//     } catch (e) {
-//         console.log(e);
-//         onError();
-//     }
-// };
+  ridingDudu.onload = function () {
+    walkDudu();
+    ridingDudu.onload = null;
+  };
+}
 
-// function done(result) {
-//     console.log(`result are: ${result.data}`); 
-//     console.log("ok");
-// };
+function createDelayOpacity(elementId, time) {
+  setTimeout(function () {
+    gsap.to(`${elementId}`, {
+      duration: 5,
+      opacity: 1,
+    });
+  }, time);
+}
 
-// function failed() {
-//     console.log("fail");
-// };
-
-// goodJsonText = '{"data":25}';
-// wrongJsonText = `{"data:25"'}`;
-
-// parseData(goodJsonText, done, failed);
-// parseData(wrongJsonText, done, failed);
-
-// let click = function (event) {
-//     console.log("click");
-// }
-
-// document.addEventListener("click", click);
+function createMovingObject(image, durationTime, whereX) {
+  gsap.to(`${image}`, {
+    duration: durationTime,
+    x: whereX,
+    ease: "power1.inOut",
+  });
+}
