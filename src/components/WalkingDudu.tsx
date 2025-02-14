@@ -3,6 +3,7 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styles from '../styles/WalkingDudu.module.css';
+import Image from 'next/image';
 
 interface WalkingDuduProps {
   onComplete: () => void;
@@ -30,47 +31,47 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
       setIsFlipped(false);
       await controls.start({
         x: ['100vw', '-100vw'],
-        y: ['-40vh', '40vh'],
+        y: ['-20vh', isMobile ? '20vh' : '40vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // 2. Od lewej do prawej górą
+      // // 2. Od lewej do prawej górą
       setIsFlipped(true);
       await controls.start({
         x: ['-100vw', '100vw'],
-        y: ['20vh', '20vh'],
+        y: [isMobile ? '10vh' : '20vh', isMobile ? '10vh' : '20vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // 3. Z prawej na lewo dołem
+      // // 3. Z prawej na lewo dołem
       setIsFlipped(false);
       await controls.start({
         x: ['100vw', '-100vw'],
-        y: ['60vh', '60vh'],
+        y: [isMobile ? '40vh' : '60vh', isMobile ? '40vh' : '60vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // 4. Po przekątnej z dołu do góry
+      // // 4. Po przekątnej z dołu do góry
       setIsFlipped(true);
       await controls.start({
         x: ['-100vw', '100vw'],
-        y: ['80vh', '-20vh'],
+        y: [isMobile ? '60vh' : '80vh', isMobile ? '-10vh' : '-20vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // 5. Finalna animacja - do środka z uwzględnieniem rozmiaru ekranu
+      // 5. ostatnia animacja na środek
       setIsFlipped(false);
       await controls.start({
-        x: ['100vw', isMobile ? '20vw' : '40vw'], // Dostosowane pozycje dla mobile/desktop
-        y: ['40vh', '40vh'],
-        transition: { duration: 3, ease: 'easeInOut' }
+        x: ['100vw', '20vw'],
+        y: ['40vh' , '40vh'],
+        transition: { duration: 3, ease: 'easeOut' }
       });
+      await new Promise(resolve => setTimeout(resolve, 200));
       
-      await new Promise(resolve => setTimeout(resolve, 1000));
       onComplete();
     };
 
@@ -80,14 +81,16 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
   return (
     <motion.div
       animate={controls}
-      initial={{ x: '100vw', y: '-40vh' }}
+      initial={{ x: '100vw', y: '-20vh' }}
       className={styles.duduContainer}
     >
-      <img
+      <Image
         src="/assets/walkingDudu.gif"
         alt="Walking Dudu"
         className={styles.duduImage}
-        style={{
+        fill
+        style={{ 
+          objectFit: 'contain',
           transform: isFlipped ? 'scaleX(-1)' : 'none',
           transition: 'transform 0.3s ease',
         }}

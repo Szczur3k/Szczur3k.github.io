@@ -3,6 +3,7 @@
 import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styles from '../styles/DuduCharacter.module.css';
+import Image from 'next/image';
 
 interface RidingDuduProps {
   onComplete: () => void;
@@ -19,20 +20,20 @@ export default function RidingDudu({ onComplete }: RidingDuduProps) {
       await controls.start({
         x: ['-80vw', '120vw'],
         y: ['70vh', '10vh'],
-        transition: { duration: 5, ease: 'linear' }
+        transition: { duration: 4, ease: 'linear' }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // // 2. Z dołu z prawej w lewo
       setIsFlipped(false);
       await controls.start({
         x: ['100vw', '-100vw'],
         y: ['70vh', '-10vh'],
-        transition: { duration: 5, ease: 'linear' }
+        transition: { duration: 4, ease: 'linear' }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 3. Z dołu z lewej w prawo
       setIsFlipped(true);
@@ -42,17 +43,17 @@ export default function RidingDudu({ onComplete }: RidingDuduProps) {
         transition: { duration: 4, ease: 'linear' }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 4. z prawej do lewej
       setIsFlipped(false);
       await controls.start({
         x: ['100vw', '-100vw'],
         y: ['30vh', '80vh'], 
-        transition: { duration: 5, ease: 'linear' }
+        transition: { duration: 4, ease: 'linear' }
       });
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // Finalna animacja - wyjazd w prawo
       setIsFlipped(true);
@@ -63,7 +64,7 @@ export default function RidingDudu({ onComplete }: RidingDuduProps) {
       });
       
       // Po zakończeniu wszystkich animacji
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
       onComplete();
     };
 
@@ -76,12 +77,13 @@ export default function RidingDudu({ onComplete }: RidingDuduProps) {
       initial={{ x: '-100vw', y: '30vh' }}
       className={styles.duduContainer}
     >
-      <img
-        id="duduImage"
-        src="/assets/ridingDudu.gif"
-        alt="Dudu character"
+      <Image
+        src="/assets/ridingDudu.png"
+        alt="Riding Dudu"
         className={styles.duduImage}
-        style={{
+        fill
+        style={{ 
+          objectFit: 'contain',
           transform: isFlipped ? 'scaleX(-1)' : 'none',
           transition: 'transform 0.3s ease',
         }}

@@ -7,7 +7,7 @@ import WalkingDudu from '@/components/WalkingDudu';
 import BeMyValentine from '@/components/BeMyValentine';
 
 export default function Home() {
-  const [currentPhase, setCurrentPhase] = useState<'story' | 'riding' | 'walking'>('story');
+  const [currentPhase, setCurrentPhase] = useState<'story' | 'riding' | 'walking' | 'valentine'>('story');
 
   const handleStoryComplete = () => {
     setCurrentPhase('riding');
@@ -17,20 +17,24 @@ export default function Home() {
     setCurrentPhase('walking');
   };
 
+  const handleWalkingComplete = () => {
+    setCurrentPhase('valentine');
+  };
+
   return (
     <main className="min-h-screen relative overflow-hidden bg-white">
-      {/* <RidingDudu /> */}
-      {/* <WalkingDudu /> */}
-      <BeMyValentine />
-      {/* {currentPhase === 'story' && (
+      {currentPhase === 'story' && (
         <StoryIntro onComplete={handleStoryComplete} />
       )}
       {currentPhase === 'riding' && (
         <RidingDudu onComplete={handleRidingComplete} />
       )}
       {currentPhase === 'walking' && (
-        <WalkingDudu />
-      )} */}
+        <WalkingDudu onComplete={handleWalkingComplete} />
+      )}
+      {currentPhase === 'valentine' && (
+        <BeMyValentine />
+      )}
     </main>
   );
 }

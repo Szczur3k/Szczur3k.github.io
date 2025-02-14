@@ -3,12 +3,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import styles from '../styles/BeMyValentine.module.css';
+import Image from 'next/image';
 
-interface BeMyValentineProps {
-  onComplete?: () => void;
-}
-
-export default function BeMyValentine({ onComplete }: BeMyValentineProps) {
+export default function BeMyValentine() {
   const [currentTextIndex, setCurrentTextIndex] = useState(-1);
   const [showQuestion, setShowQuestion] = useState(false);
   const [currentImage, setCurrentImage] = useState('/assets/couldYouDudu.gif');
@@ -36,7 +33,7 @@ export default function BeMyValentine({ onComplete }: BeMyValentineProps) {
     };
 
     showTexts();
-  }, []);
+  }, [storyTexts.length]);
 
   const moveNoButton = () => {
     const newX = Math.random() * (window.innerWidth - 100) - window.innerWidth/2;
@@ -68,10 +65,12 @@ export default function BeMyValentine({ onComplete }: BeMyValentineProps) {
         animate={{ scale: showQuestion ? 1.1 : 1 }}
         transition={{ duration: 0.5 }}
       >
-        <img
+        <Image
           src={currentImage}
           alt="Dudu"
           className={styles.duduImage}
+          fill
+          style={{ objectFit: 'contain' }}
         />
       </motion.div>
 

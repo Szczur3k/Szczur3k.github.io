@@ -21,15 +21,13 @@ export default function StoryIntro({ onComplete }: StoryIntroProps) {
     const showTexts = async () => {
       for (let i = 0; i < storyTexts.length; i++) {
         setCurrentTextIndex(i);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-        setCurrentTextIndex(-1);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 3000));
       }
       onComplete();
     };
 
     showTexts();
-  }, []);
+  }, [storyTexts.length, onComplete]);
 
   return (
     <div className="fixed inset-0 bg-white flex items-center justify-center">
