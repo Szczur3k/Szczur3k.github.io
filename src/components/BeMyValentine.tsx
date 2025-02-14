@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import styles from '../styles/BeMyValentine.module.css';
 import Image from 'next/image';
+import couldYouDuduGif from '@/public/assets/couldYouDudu.gif';
+import bubuHeartsGif from '@/public/assets/bubuHearts.gif';
 
 export default function BeMyValentine() {
   const [currentTextIndex, setCurrentTextIndex] = useState(-1);
   const [showQuestion, setShowQuestion] = useState(false);
-  const [currentImage, setCurrentImage] = useState('/assets/couldYouDudu.gif');
+  const [currentImage, setCurrentImage] = useState(couldYouDuduGif);
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [yesButtonScale, setYesButtonScale] = useState(1);
 
@@ -28,7 +30,7 @@ export default function BeMyValentine() {
         setCurrentTextIndex(-1);
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
-      setCurrentImage('/assets/bubuHearts.gif');
+      setCurrentImage(bubuHeartsGif);
       setShowQuestion(true);
     };
 

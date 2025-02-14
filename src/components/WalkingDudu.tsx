@@ -4,6 +4,7 @@ import { motion, useAnimationControls } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import styles from '../styles/WalkingDudu.module.css';
 import Image from 'next/image';
+import walkingDuduGif from '@/public/assets/walkingDudu.gif';
 
 interface WalkingDuduProps {
   onComplete: () => void;
@@ -85,7 +86,7 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
       className={styles.duduContainer}
     >
       <Image
-        src="/assets/walkingDudu.gif"
+        src={walkingDuduGif}
         alt="Walking Dudu"
         className={styles.duduImage}
         fill

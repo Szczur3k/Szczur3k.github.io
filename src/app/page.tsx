@@ -5,6 +5,11 @@ import StoryIntro from '@/components/StoryIntro';
 import RidingDudu from '@/components/RidingDudu';
 import WalkingDudu from '@/components/WalkingDudu';
 import BeMyValentine from '@/components/BeMyValentine';
+import walkingDuduGif from '@/public/assets/walkingDudu.gif';
+import couldYouDuduGif from '@/public/assets/couldYouDudu.gif';
+import bubuHeartsGif from '@/public/assets/bubuHearts.gif';
+import kissBubuGif from '@/public/assets/kissBubu.gif';
+import Image from 'next/image';
 
 export default function Home() {
   const [currentPhase, setCurrentPhase] = useState<'story' | 'riding' | 'walking' | 'valentine'>('story');
@@ -35,6 +40,10 @@ export default function Home() {
       {currentPhase === 'valentine' && (
         <BeMyValentine />
       )}
+      <Image
+        src={walkingDuduGif}
+        alt="Walking Dudu"
+      />
     </main>
   );
 }

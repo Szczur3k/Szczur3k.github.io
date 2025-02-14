@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import styles from '../styles/StoryText.module.css';
 
 interface StoryTextProps {
   text: string;
@@ -9,15 +10,13 @@ interface StoryTextProps {
 export default function StoryText({ text }: StoryTextProps) {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 1 }}
-      className="fixed top-1/4 left-1/2 transform -translate-x-1/2 w-4/5 md:w-2/3 text-center"
+      className={styles.storyText}
     >
-      <p className="text-xl md:text-2xl text-gray-800 font-medium">
-        {text}
-      </p>
+      <p>{text}</p>
     </motion.div>
   );
 }

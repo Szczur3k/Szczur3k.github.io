@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from '../../styles/LoveMe.module.css';
+import kissBubuGif from '@/public/assets/kissBubu.gif';
 
 export default function LoveMePage() {
   return (
@@ -17,7 +18,7 @@ export default function LoveMePage() {
         className={styles.imageContainer}
       >
         <Image
-          src="/assets/kissBubu.gif"
+          src={kissBubuGif}
           alt="Kiss Bubu"
           className={styles.bubuImage}
           fill
