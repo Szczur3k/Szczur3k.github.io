@@ -1,0 +1,24 @@
+.duduContainer {
+    position: fixed;
+    width: 20%;
+    z-index: 10;
+  }
+  
+  .duduImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Telefony w orientacji pionowej */
+  @media screen and (max-width: 768px) {
+    .duduContainer {
+      width: 60%; /* 3x większy na telefonach */
+    }
+  }
+  
+  /* Telefony w orientacji poziomej */
+  @media screen and (max-width: 768px) and (orientation: landscape) {
+    .duduContainer {
+      width: 40%; /* Nieco mniejszy w poziomie */
+    }
+  }

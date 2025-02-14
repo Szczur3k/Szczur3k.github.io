@@ -1,0 +1,17 @@
+.duduContainer {
+    position: fixed;
+    width: 20%; /* 2x większy na desktopie (było 20%) */
+    z-index: 10;
+  }
+  
+  .duduImage {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Na telefonach */
+  @media screen and (max-width: 768px) {
+    .duduContainer {
+      width: 60%; /* 3x większy na mobile (było 20%) */
+    }
+  }

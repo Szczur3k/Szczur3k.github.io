@@ -1,0 +1,24 @@
+.imageContainer {
+  width: 32%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.duduImage {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .imageContainer {
+    width: 64%;
+  }
+}
+
+.valentine-text {
+  color: black;
+  background: rgba(255, 192, 203, 0.2);
+  padding: 10px 20px;
+  border-radius: 15px;
+  text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3);
+} 
