@@ -4,11 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import styles from '../styles/BeMyValentine.module.css';
 
-interface BeMyValentineProps {
-  onComplete?: () => void;
-}
-
-export default function BeMyValentine({ onComplete }: BeMyValentineProps) {
+export default function BeMyValentine() {
   const [currentTextIndex, setCurrentTextIndex] = useState(-1);
   const [showQuestion, setShowQuestion] = useState(false);
   const [currentImage, setCurrentImage] = useState('/assets/couldYouDudu.gif');
