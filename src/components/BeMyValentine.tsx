@@ -17,10 +17,10 @@ export default function BeMyValentine({ onComplete }: BeMyValentineProps) {
 
   const storyTexts = [
     "Bo wiesz...",
-    "Tak się zastanawiałem...",
+    "Mam taki list w ręcę...",
+    "Który bardzo chciałbym dostarczyć...",
+    "No i tak się zastanawiałem...",
     "Czy może ten...",
-    "Mam taki list...",
-    "A w nim jest coś takiego..."
   ];
 
   useEffect(() => {

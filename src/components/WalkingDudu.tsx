@@ -30,10 +30,10 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
       setIsFlipped(false);
       await controls.start({
         x: ['100vw', '-100vw'],
-        y: ['-40vh', '40vh'],
+        y: ['-10vh', '30vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 2. Od lewej do prawej górą
       setIsFlipped(true);
@@ -42,7 +42,7 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
         y: ['20vh', '20vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 3. Z prawej na lewo dołem
       setIsFlipped(false);
@@ -51,26 +51,26 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
         y: ['60vh', '60vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 4. Po przekątnej z dołu do góry
       setIsFlipped(true);
       await controls.start({
         x: ['-100vw', '100vw'],
-        y: ['80vh', '-20vh'],
+        y: ['80vh', '-30vh'],
         transition: { duration: 5, ease: 'linear' }
       });
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
       // 5. Finalna animacja - do środka z uwzględnieniem rozmiaru ekranu
       setIsFlipped(false);
       await controls.start({
-        x: ['100vw', isMobile ? '20vw' : '40vw'], // Dostosowane pozycje dla mobile/desktop
+        x: ['100vw', isMobile ? '20vw' : '40vw'],
         y: ['40vh', '40vh'],
-        transition: { duration: 3, ease: 'easeInOut' }
+        transition: { duration: 4, ease: 'easeInOut' }
       });
       
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 100));
       onComplete();
     };
 
@@ -80,7 +80,7 @@ export default function WalkingDudu({ onComplete }: WalkingDuduProps) {
   return (
     <motion.div
       animate={controls}
-      initial={{ x: '100vw', y: '-40vh' }}
+      initial={{ x: '120vw', y: '-40vh' }}
       className={styles.duduContainer}
     >
       <img

@@ -8,8 +8,8 @@ interface StoryIntroProps {
 }
 
 export default function StoryIntro({ onComplete }: StoryIntroProps) {
-  const [currentTextIndex, setCurrentTextIndex] = useState(-1);
-
+  const [visibleText, setVisibleText] = useState('');
+  
   const storyTexts = [
     "W pewien wieczór Dudu ścisnął w dłoni list, którego treść mogła wszystko zmienić",
     "Postanowił podjąć się odważnej próby. Wiedział, że wiele zależy od tego czy go dostarczy",
@@ -20,10 +20,10 @@ export default function StoryIntro({ onComplete }: StoryIntroProps) {
   useEffect(() => {
     const showTexts = async () => {
       for (let i = 0; i < storyTexts.length; i++) {
-        setCurrentTextIndex(i);
+        setVisibleText(storyTexts[i]);
         await new Promise(resolve => setTimeout(resolve, 5000));
-        setCurrentTextIndex(-1);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        setVisibleText('');
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
       onComplete();
     };
@@ -33,20 +33,22 @@ export default function StoryIntro({ onComplete }: StoryIntroProps) {
 
   return (
     <div className="fixed inset-0 bg-white flex items-center justify-center">
-      <AnimatePresence>
-        {currentTextIndex !== -1 && (
+      <AnimatePresence mode="wait">
+        {visibleText && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            key={visibleText}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
+            exit={{ opacity: 0, y: -30 }}
             transition={{ 
-              duration: 1,
-              ease: "easeOut"
+              type: "tween",
+              duration: 1.3,
+              ease: "easeInOut"
             }}
             className="w-4/5 md:w-2/3 text-center absolute"
           >
             <p className="text-2xl md:text-3xl text-black font-bold">
-              {storyTexts[currentTextIndex]}
+              {visibleText}
             </p>
           </motion.div>
         )}
